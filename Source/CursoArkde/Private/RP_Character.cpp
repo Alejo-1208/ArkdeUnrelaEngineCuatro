@@ -28,6 +28,16 @@ void ARP_Character::MoveRight(float value)
 	AddMovementInput(GetActorRightVector() * value);
 }
 
+void ARP_Character::Jump()
+{
+	Super::Jump();
+}
+
+void ARP_Character::StopJumping()
+{
+	Super::StopJumping();
+}
+
 // Called every frame
 void ARP_Character::Tick(float DeltaTime)
 {
@@ -40,9 +50,13 @@ void ARP_Character::SetupPlayerInputComponent(UInputComponent* PlayerInputCompon
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
+	//Axis -> progresivo Action-> acci[on directa
 	PlayerInputComponent->BindAxis("MoveForward", this, &ARP_Character::MoveForward);
 	PlayerInputComponent->BindAxis("MoveRight", this, &ARP_Character::MoveRight);
-	
+
+	//Cuando presione el boton pra saltar este obejto va a obedecer a la funcion
+	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ARP_Character::Jump);
+	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ARP_Character::StopJumping);
 
 }
 
