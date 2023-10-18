@@ -38,6 +38,22 @@ void ARP_Character::StopJumping()
 	Super::StopJumping();
 }
 
+void ARP_Character::AddControllerPitchInput(float value)
+{
+	/*if (bIsLookInversion)
+	{
+		Super::AddControllerPitchInput(-value);
+	}
+	else
+	{
+		Super::AddControllerPitchInput(value);
+	}*/
+
+	Super::AddControllerPitchInput(bIsLookInversion? -value : value);
+
+
+}
+
 // Called every frame
 void ARP_Character::Tick(float DeltaTime)
 {
@@ -50,13 +66,18 @@ void ARP_Character::SetupPlayerInputComponent(UInputComponent* PlayerInputCompon
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
-	//Axis -> progresivo Action-> acci[on directa
+	//Axis ->progresivo  Action->acción directa
 	PlayerInputComponent->BindAxis("MoveForward", this, &ARP_Character::MoveForward);
 	PlayerInputComponent->BindAxis("MoveRight", this, &ARP_Character::MoveRight);
 
-	//Cuando presione el boton pra saltar este obejto va a obedecer a la funcion
+	PlayerInputComponent->BindAxis("LookUp", this, &ARP_Character::AddControllerPitchInput);
+	PlayerInputComponent->BindAxis("LookRight", this, &ACharacter::AddControllerYawInput);
+
+	//Cuando presione el boton para saltar este obejto va a obedecer a la funcion
 	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ARP_Character::Jump);
 	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ARP_Character::StopJumping);
 
 }
+
+
 
