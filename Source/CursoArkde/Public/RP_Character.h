@@ -6,16 +6,26 @@
 #include "GameFramework/Character.h"
 #include "RP_Character.generated.h"
 
+class UCameraComponent;
+
 UCLASS()
 class CURSOARKDE_API ARP_Character : public ACharacter
 {
 	GENERATED_BODY()
 
 protected:
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Component")
+	UCameraComponent* FPSCameraComponent;
+
+protected:
 	// blueprintCallable -> solo se usa para funciones   BlueprintReadOnly ->  para variables
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Aiming")
 	bool bIsLookInversion;
 
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Aiming")
+	// un FName es un string que no puede estar vacio
+	FName FPSCameraSocketName;
 
 public:
 	// Sets default values for this character's properties
