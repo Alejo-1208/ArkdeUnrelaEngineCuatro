@@ -2,12 +2,21 @@
 
 
 #include "RP_Character.h"
+#include "Camera/CameraComponent.h"
 
 // Sets default values
 ARP_Character::ARP_Character()
 {
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
+
+
+	FPSCameraSocketName = "SCK_Camera";
+
+	FPSCameraComponent = CreateDefaultSubobject<UCameraComponent>(TEXT("FPSCameraComponent"));
+	FPSCameraComponent->bUsePawnControlRotation = true;
+	FPSCameraComponent->SetupAttachment(GetMesh(), FPSCameraSocketName); // aqui logro que el socket (parte del esqueleto) sea hijo en este caso de la camara
+
 
 }
 
