@@ -2,6 +2,7 @@
 
 
 #include "RP_Character.h"
+#include "GameFramework/SpringArmComponent.h"
 #include "Camera/CameraComponent.h"
 
 // Sets default values
@@ -16,6 +17,15 @@ ARP_Character::ARP_Character()
 	FPSCameraComponent = CreateDefaultSubobject<UCameraComponent>(TEXT("FPSCameraComponent"));
 	FPSCameraComponent->bUsePawnControlRotation = true;
 	FPSCameraComponent->SetupAttachment(GetMesh(), FPSCameraSocketName); // aqui logro que el socket (parte del esqueleto) sea hijo en este caso de la camara
+
+
+	SpringArmComponent = CreateDefaultSubobject<USpringArmComponent>(TEXT("SpringArmComponent"));
+	SpringArmComponent->bUsePawnControlRotation = true;
+	SpringArmComponent->SetupAttachment(RootComponent);
+
+
+	TPSCameraComponent = CreateDefaultSubobject<UCameraComponent>(TEXT("TPSCameraComponent"));
+	TPSCameraComponent->SetupAttachment(SpringArmComponent);
 
 
 }

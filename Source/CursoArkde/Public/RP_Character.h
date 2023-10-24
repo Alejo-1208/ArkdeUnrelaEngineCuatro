@@ -7,6 +7,7 @@
 #include "RP_Character.generated.h"
 
 class UCameraComponent;
+class USpringArmComponent;
 
 UCLASS()
 class CURSOARKDE_API ARP_Character : public ACharacter
@@ -14,8 +15,15 @@ class CURSOARKDE_API ARP_Character : public ACharacter
 	GENERATED_BODY()
 
 protected:
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Component")
+	USpringArmComponent* SpringArmComponent;
+
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Component")
 	UCameraComponent* FPSCameraComponent;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Component")
+	UCameraComponent* TPSCameraComponent;
 
 protected:
 	// blueprintCallable -> solo se usa para funciones   BlueprintReadOnly ->  para variables
