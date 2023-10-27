@@ -26,6 +26,10 @@ protected:
 	UCameraComponent* TPSCameraComponent;
 
 protected:
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Aiming")
+	bool bUseFirstPersonView; //se crea esta opci[on para cambiar de tipo de camara
+
 	// blueprintCallable -> solo se usa para funciones   BlueprintReadOnly ->  para variables
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Aiming")
 	bool bIsLookInversion;
