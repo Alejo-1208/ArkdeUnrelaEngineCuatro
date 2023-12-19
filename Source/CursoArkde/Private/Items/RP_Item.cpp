@@ -18,7 +18,7 @@ ARP_Item::ARP_Item()
 	MainColliderComponent->SetCollisionResponseToChannel(ECC_WorldDynamic, ECR_Block);
 	MainColliderComponent->SetCollisionResponseToChannel(ECC_Pawn,ECR_Overlap);
 	RootComponent = MainColliderComponent;
-
+	
 
 }
 
